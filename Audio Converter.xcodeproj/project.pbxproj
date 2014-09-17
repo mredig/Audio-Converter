@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3356F77119C941030060023D /* SGG_ConverterControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3356F77019C941030060023D /* SGG_ConverterControl.m */; };
+		3356F77419C9615F0060023D /* FileTypeLibrary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77319C9615F0060023D /* FileTypeLibrary.plist */; };
 		33BC9E4D19C91CA500D3F35F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BC9E4C19C91CA500D3F35F /* Cocoa.framework */; };
 		33BC9E5719C91CA500D3F35F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33BC9E5519C91CA500D3F35F /* InfoPlist.strings */; };
 		33BC9E5919C91CA500D3F35F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BC9E5819C91CA500D3F35F /* main.m */; };
@@ -17,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3356F76F19C941030060023D /* SGG_ConverterControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGG_ConverterControl.h; sourceTree = "<group>"; };
+		3356F77019C941030060023D /* SGG_ConverterControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGG_ConverterControl.m; sourceTree = "<group>"; };
+		3356F77319C9615F0060023D /* FileTypeLibrary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FileTypeLibrary.plist; sourceTree = "<group>"; };
 		33BC9E4919C91CA500D3F35F /* Audio Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BC9E4C19C91CA500D3F35F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		33BC9E4F19C91CA500D3F35F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -88,7 +93,10 @@
 			children = (
 				33BC9E5E19C91CA500D3F35F /* SGG_AppDelegate.h */,
 				33BC9E5F19C91CA500D3F35F /* SGG_AppDelegate.m */,
+				3356F76F19C941030060023D /* SGG_ConverterControl.h */,
+				3356F77019C941030060023D /* SGG_ConverterControl.m */,
 				33BC9E6119C91CA500D3F35F /* MainMenu.xib */,
+				3356F77319C9615F0060023D /* FileTypeLibrary.plist */,
 				33BC9E6419C91CA500D3F35F /* Images.xcassets */,
 				33BC9E5319C91CA500D3F35F /* Supporting Files */,
 			);
@@ -163,6 +171,7 @@
 				33BC9E5719C91CA500D3F35F /* InfoPlist.strings in Resources */,
 				33BC9E6519C91CA500D3F35F /* Images.xcassets in Resources */,
 				33BC9E5D19C91CA500D3F35F /* Credits.rtf in Resources */,
+				3356F77419C9615F0060023D /* FileTypeLibrary.plist in Resources */,
 				33BC9E6319C91CA500D3F35F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3356F77119C941030060023D /* SGG_ConverterControl.m in Sources */,
 				33BC9E6019C91CA500D3F35F /* SGG_AppDelegate.m in Sources */,
 				33BC9E5919C91CA500D3F35F /* main.m in Sources */,
 			);
@@ -324,6 +334,7 @@
 				33BC9E7C19C91CA500D3F35F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

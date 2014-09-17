@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FileTypes</key>
+	<array>
+		<dict>
+			<key>container</key>
+			<string>aif</string>
+			<key>compressionTypes</key>
+			<array>
+				<dict>
+					<key>human</key>
+					<string>8 Bit</string>
+					<key>actual</key>
+					<string>I8</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 16 Bit</string>
+					<key>actual</key>
+					<string>BEI16</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 24 Bit</string>
+					<key>actual</key>
+					<string>BEI24</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 32 Bit</string>
+					<key>actual</key>
+					<string>BEI32</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>container</key>
+			<string>aifc</string>
+			<key>compressionTypes</key>
+			<array>
+				<dict>
+					<key>human</key>
+					<string>8 Bit</string>
+					<key>actual</key>
+					<string>I8</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 16 Bit</string>
+					<key>actual</key>
+					<string>BEI16</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 24 Bit</string>
+					<key>actual</key>
+					<string>BEI24</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 32 Bit</string>
+					<key>actual</key>
+					<string>BEI32</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>container</key>
+			<string>m4a</string>
+			<key>compressionTypes</key>
+			<array>
+				<dict>
+					<key>human</key>
+					<string>AAC</string>
+					<key>actual</key>
+					<string>aac</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Apple Lossless</string>
+					<key>actual</key>
+					<string>alac</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>container</key>
+			<string>caf</string>
+			<key>compressionTypes</key>
+			<array>
+				<dict>
+					<key>human</key>
+					<string>8 Bit</string>
+					<key>actual</key>
+					<string>I8</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 16 Bit</string>
+					<key>actual</key>
+					<string>BEI16</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 24 Bit</string>
+					<key>actual</key>
+					<string>BEI24</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 32 Bit</string>
+					<key>actual</key>
+					<string>BEI32</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>MP3</string>
+					<key>actual</key>
+					<string>.mp3</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>AC3</string>
+					<key>actual</key>
+					<string>AC-3</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>AAC</string>
+					<key>actual</key>
+					<string>aac</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Apple Lossless</string>
+					<key>actual</key>
+					<string>alac</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>container</key>
+			<string>mp3</string>
+			<key>compressionTypes</key>
+			<array>
+				<dict>
+					<key>human</key>
+					<string>MP3</string>
+					<key>actual</key>
+					<string>mp3</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>container</key>
+			<string>Sd2f</string>
+			<key>compressionTypes</key>
+			<array>
+				<dict>
+					<key>human</key>
+					<string>8 Bit</string>
+					<key>actual</key>
+					<string>I8</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 16 Bit</string>
+					<key>actual</key>
+					<string>BEI16</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 24 Bit</string>
+					<key>actual</key>
+					<string>BEI24</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Big Endian 32 Bit</string>
+					<key>actual</key>
+					<string>BEI32</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>container</key>
+			<string>wav</string>
+			<key>compressionTypes</key>
+			<array>
+				<dict>
+					<key>human</key>
+					<string>8 Bit</string>
+					<key>actual</key>
+					<string>UI8</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Little Endian 16 Bit Integer</string>
+					<key>actual</key>
+					<string>LEI16</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Little Endian 24 Bit Integer</string>
+					<key>actual</key>
+					<string>LEI24</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Little Endian 32 Bit Integer</string>
+					<key>actual</key>
+					<string>LEI32</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Little Endian 32 Bit Float</string>
+					<key>actual</key>
+					<string>LEF32</string>
+				</dict>
+				<dict>
+					<key>human</key>
+					<string>Little Endian 64 Bit Float</string>
+					<key>actual</key>
+					<string>LEF64</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
