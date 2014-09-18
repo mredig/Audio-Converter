@@ -242,7 +242,6 @@
 }
 
 - (IBAction)bitRateChanged:(NSTextField *)sender {
-	
 	[self updateDefaults];
 	[self canTranscode];
 
@@ -260,22 +259,7 @@
 
 - (IBAction)encodeButtonPressed:(NSButton *)sender {
 	
-	
-	
 	NSArray* arguments = [self determineArguments];
-
-	
-//	NSTask* transcode = [[NSTask alloc] init];
-//	
-//
-//	
-//	
-//	[transcode setLaunchPath:@"/bin/bash"];
-//	[transcode setArguments:arguments];
-//	[transcode launch];
-//
-//	
-//	NSLog(@"arguments: %@", arguments);
 
 	[self transcodeWithArguments:arguments];
 
