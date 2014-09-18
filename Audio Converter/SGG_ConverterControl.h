@@ -20,9 +20,9 @@
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 @property (weak) IBOutlet NSButton *encouragementCheckbox;
 @property (weak) IBOutlet NSButton *encodeButton;
+@property (unsafe_unretained) IBOutlet NSTextView *outputTextArea;
 
 
-- (IBAction)nameChanged:(NSPopUpButton *)sender;
 - (IBAction)openFileNamed:(id)sender;
 - (IBAction)saveTo:(NSButton *)sender;
 - (IBAction)containerChanged:(NSPopUpButton *)sender;

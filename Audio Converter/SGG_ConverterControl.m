@@ -132,12 +132,6 @@
 
 #pragma mark INTERFACE INPUT METHODS
 
-- (IBAction)nameChanged:(NSPopUpButton *)sender {
-	
-	[self updateDefaults];
-	[self canTranscode];
-
-}
 
 - (IBAction)openFileNamed:(id)sender {
 	
@@ -260,10 +254,35 @@
 
 - (IBAction)encodeButtonPressed:(NSButton *)sender {
 	
+	NSPipe* outputPipe = [[NSPipe alloc] init];
+	
+	
 	NSArray* arguments = [self determineArguments];
 
 	
 	NSTask* transcode = [[NSTask alloc] init];
+	[transcode setStandardOutput:outputPipe];
+	[transcode setStandardError:outputPipe];
+	
+	[[outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+	
+	[[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
+		
+		NSData* output = [[outputPipe fileHandleForReading] availableData];
+		NSString* outString = [[NSString alloc ] initWithData:output encoding:NSUTF8StringEncoding];
+		
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			_outputTextArea.string = [_outputTextArea.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outString]];
+			
+			NSRange range;
+			range = NSMakeRange([_outputTextArea.string length], 0);
+			[_outputTextArea scrollRangeToVisible:range];
+		});
+		
+		
+	}];
+	
+	
 	[transcode setLaunchPath:@"/bin/bash"];
 	[transcode setArguments:arguments];
 	[_progressIndicator startAnimation:nil];
