@@ -293,10 +293,12 @@
 		
 		@try {
 			[_progressIndicator startAnimation:nil];
+			_outputTextArea.string = @"";
 
 			
 			NSTask* transcode = [[NSTask alloc] init];
-			transcode.launchPath = @"/usr/bin/afconvert";
+//			transcode.launchPath = @"/usr/bin/afconvert";
+			transcode.launchPath = @"/bin/bash";
 //			transcode.launchPath = @"/bin/echo";
 			transcode.arguments = arguments;
 			
@@ -385,21 +387,21 @@
 	}
 
 	NSURL* inputURL = openFilesArray[0];
-//	inputFile = [NSString stringWithFormat:@"'%@'", inputURL.path];
-	inputFile = [NSString stringWithFormat:@"%@", inputURL.path];
+	inputFile = [NSString stringWithFormat:@"'%@'", inputURL.path];
+//	inputFile = [NSString stringWithFormat:@"%@", inputURL.path];
 	
 	NSString* removeExtension = inputURL.pathComponents[inputURL.pathComponents.count - 1];
 	removeExtension = [removeExtension stringByDeletingPathExtension];
 	
-//	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, removeExtension, currentContainerExtension];
-	outputFile = [NSString stringWithFormat:@"%@/%@.%@", _destinationField.stringValue, removeExtension, currentContainerExtension];
+	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, removeExtension, currentContainerExtension];
+//	outputFile = [NSString stringWithFormat:@"%@/%@.%@", _destinationField.stringValue, removeExtension, currentContainerExtension];
 	
 
 	
-//	NSString* command = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, destStrat, destBitrate, inputFile, outputFile];
+	NSString* command = [NSString stringWithFormat:@"%@ -f %@ -d %@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, outputFile];
 	
-	return @[@" -v ", @" -f ", destFormat, @" -d ", destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, @" -o ", outputFile];
-//	return @[stringThing, command];
+//	return @[@" -v ", @" -f ", destFormat, @" -d ", destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, @" -o ", outputFile];
+	return @[stringThing, command];
 }
 
 -(bool)compressionTypeSupportsBitrate:(NSString*)compressionType {
