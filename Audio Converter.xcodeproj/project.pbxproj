@@ -9,15 +9,16 @@
 /* Begin PBXBuildFile section */
 		3356F77119C941030060023D /* SGG_ConverterControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3356F77019C941030060023D /* SGG_ConverterControl.m */; };
 		3356F77419C9615F0060023D /* FileTypeLibrary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77319C9615F0060023D /* FileTypeLibrary.plist */; };
-		3356F78019CA773C0060023D /* base_encourage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77719CA773C0060023D /* base_encourage.mp3 */; };
-		3356F78119CA773C0060023D /* name_cody.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77819CA773C0060023D /* name_cody.mp3 */; };
-		3356F78219CA773C0060023D /* name_default.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77919CA773C0060023D /* name_default.mp3 */; };
-		3356F78319CA773C0060023D /* name_default_alt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77A19CA773C0060023D /* name_default_alt.mp3 */; };
-		3356F78419CA773C0060023D /* name_khris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77B19CA773C0060023D /* name_khris.mp3 */; };
-		3356F78519CA773C0060023D /* name_kurt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77C19CA773C0060023D /* name_kurt.mp3 */; };
-		3356F78619CA773C0060023D /* name_michael.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77D19CA773C0060023D /* name_michael.mp3 */; };
-		3356F78719CA773C0060023D /* name_sam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77E19CA773C0060023D /* name_sam.mp3 */; };
-		3356F78819CA773C0060023D /* name_scott.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F77F19CA773C0060023D /* name_scott.mp3 */; };
+		3356F78A19CA86BE0060023D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3356F78919CA86BE0060023D /* CoreAudio.framework */; };
+		3356F7A619CA8FE40060023D /* base_encourage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F79D19CA8FE40060023D /* base_encourage.mp3 */; };
+		3356F7A719CA8FE40060023D /* name_cody.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F79E19CA8FE40060023D /* name_cody.mp3 */; };
+		3356F7A819CA8FE40060023D /* name_default_alt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F79F19CA8FE40060023D /* name_default_alt.mp3 */; };
+		3356F7A919CA8FE40060023D /* name_default.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A019CA8FE40060023D /* name_default.mp3 */; };
+		3356F7AA19CA8FE40060023D /* name_khris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A119CA8FE40060023D /* name_khris.mp3 */; };
+		3356F7AB19CA8FE40060023D /* name_kurt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A219CA8FE40060023D /* name_kurt.mp3 */; };
+		3356F7AC19CA8FE40060023D /* name_michael.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A319CA8FE40060023D /* name_michael.mp3 */; };
+		3356F7AD19CA8FE40060023D /* name_sam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A419CA8FE40060023D /* name_sam.mp3 */; };
+		3356F7AE19CA8FE40060023D /* name_scott.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A519CA8FE40060023D /* name_scott.mp3 */; };
 		33BC9E4D19C91CA500D3F35F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BC9E4C19C91CA500D3F35F /* Cocoa.framework */; };
 		33BC9E5719C91CA500D3F35F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33BC9E5519C91CA500D3F35F /* InfoPlist.strings */; };
 		33BC9E5919C91CA500D3F35F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BC9E5819C91CA500D3F35F /* main.m */; };
@@ -31,15 +32,16 @@
 		3356F76F19C941030060023D /* SGG_ConverterControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGG_ConverterControl.h; sourceTree = "<group>"; };
 		3356F77019C941030060023D /* SGG_ConverterControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGG_ConverterControl.m; sourceTree = "<group>"; };
 		3356F77319C9615F0060023D /* FileTypeLibrary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FileTypeLibrary.plist; sourceTree = "<group>"; };
-		3356F77719CA773C0060023D /* base_encourage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = base_encourage.mp3; sourceTree = "<group>"; };
-		3356F77819CA773C0060023D /* name_cody.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_cody.mp3; sourceTree = "<group>"; };
-		3356F77919CA773C0060023D /* name_default.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_default.mp3; sourceTree = "<group>"; };
-		3356F77A19CA773C0060023D /* name_default_alt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_default_alt.mp3; sourceTree = "<group>"; };
-		3356F77B19CA773C0060023D /* name_khris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_khris.mp3; sourceTree = "<group>"; };
-		3356F77C19CA773C0060023D /* name_kurt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_kurt.mp3; sourceTree = "<group>"; };
-		3356F77D19CA773C0060023D /* name_michael.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_michael.mp3; sourceTree = "<group>"; };
-		3356F77E19CA773C0060023D /* name_sam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_sam.mp3; sourceTree = "<group>"; };
-		3356F77F19CA773C0060023D /* name_scott.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_scott.mp3; sourceTree = "<group>"; };
+		3356F78919CA86BE0060023D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		3356F79D19CA8FE40060023D /* base_encourage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = base_encourage.mp3; sourceTree = "<group>"; };
+		3356F79E19CA8FE40060023D /* name_cody.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_cody.mp3; sourceTree = "<group>"; };
+		3356F79F19CA8FE40060023D /* name_default_alt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_default_alt.mp3; sourceTree = "<group>"; };
+		3356F7A019CA8FE40060023D /* name_default.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_default.mp3; sourceTree = "<group>"; };
+		3356F7A119CA8FE40060023D /* name_khris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_khris.mp3; sourceTree = "<group>"; };
+		3356F7A219CA8FE40060023D /* name_kurt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_kurt.mp3; sourceTree = "<group>"; };
+		3356F7A319CA8FE40060023D /* name_michael.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_michael.mp3; sourceTree = "<group>"; };
+		3356F7A419CA8FE40060023D /* name_sam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_sam.mp3; sourceTree = "<group>"; };
+		3356F7A519CA8FE40060023D /* name_scott.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_scott.mp3; sourceTree = "<group>"; };
 		33BC9E4919C91CA500D3F35F /* Audio Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BC9E4C19C91CA500D3F35F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		33BC9E4F19C91CA500D3F35F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3356F78A19CA86BE0060023D /* CoreAudio.framework in Frameworks */,
 				33BC9E4D19C91CA500D3F35F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,15 +75,15 @@
 		3356F77619CA773C0060023D /* encourage */ = {
 			isa = PBXGroup;
 			children = (
-				3356F77719CA773C0060023D /* base_encourage.mp3 */,
-				3356F77819CA773C0060023D /* name_cody.mp3 */,
-				3356F77919CA773C0060023D /* name_default.mp3 */,
-				3356F77A19CA773C0060023D /* name_default_alt.mp3 */,
-				3356F77B19CA773C0060023D /* name_khris.mp3 */,
-				3356F77C19CA773C0060023D /* name_kurt.mp3 */,
-				3356F77D19CA773C0060023D /* name_michael.mp3 */,
-				3356F77E19CA773C0060023D /* name_sam.mp3 */,
-				3356F77F19CA773C0060023D /* name_scott.mp3 */,
+				3356F79D19CA8FE40060023D /* base_encourage.mp3 */,
+				3356F79E19CA8FE40060023D /* name_cody.mp3 */,
+				3356F79F19CA8FE40060023D /* name_default_alt.mp3 */,
+				3356F7A019CA8FE40060023D /* name_default.mp3 */,
+				3356F7A119CA8FE40060023D /* name_khris.mp3 */,
+				3356F7A219CA8FE40060023D /* name_kurt.mp3 */,
+				3356F7A319CA8FE40060023D /* name_michael.mp3 */,
+				3356F7A419CA8FE40060023D /* name_sam.mp3 */,
+				3356F7A519CA8FE40060023D /* name_scott.mp3 */,
 			);
 			path = encourage;
 			sourceTree = "<group>";
@@ -105,6 +108,7 @@
 		33BC9E4B19C91CA500D3F35F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3356F78919CA86BE0060023D /* CoreAudio.framework */,
 				33BC9E4C19C91CA500D3F35F /* Cocoa.framework */,
 				33BC9E6B19C91CA500D3F35F /* XCTest.framework */,
 				33BC9E4E19C91CA500D3F35F /* Other Frameworks */,
@@ -204,19 +208,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				33BC9E5719C91CA500D3F35F /* InfoPlist.strings in Resources */,
-				3356F78419CA773C0060023D /* name_khris.mp3 in Resources */,
-				3356F78519CA773C0060023D /* name_kurt.mp3 in Resources */,
-				3356F78119CA773C0060023D /* name_cody.mp3 in Resources */,
-				3356F78319CA773C0060023D /* name_default_alt.mp3 in Resources */,
+				3356F7AA19CA8FE40060023D /* name_khris.mp3 in Resources */,
+				3356F7AB19CA8FE40060023D /* name_kurt.mp3 in Resources */,
+				3356F7A919CA8FE40060023D /* name_default.mp3 in Resources */,
+				3356F7A719CA8FE40060023D /* name_cody.mp3 in Resources */,
 				33BC9E6519C91CA500D3F35F /* Images.xcassets in Resources */,
-				3356F78219CA773C0060023D /* name_default.mp3 in Resources */,
 				33BC9E5D19C91CA500D3F35F /* Credits.rtf in Resources */,
 				3356F77419C9615F0060023D /* FileTypeLibrary.plist in Resources */,
-				3356F78819CA773C0060023D /* name_scott.mp3 in Resources */,
-				3356F78619CA773C0060023D /* name_michael.mp3 in Resources */,
 				33BC9E6319C91CA500D3F35F /* MainMenu.xib in Resources */,
-				3356F78019CA773C0060023D /* base_encourage.mp3 in Resources */,
-				3356F78719CA773C0060023D /* name_sam.mp3 in Resources */,
+				3356F7AE19CA8FE40060023D /* name_scott.mp3 in Resources */,
+				3356F7AC19CA8FE40060023D /* name_michael.mp3 in Resources */,
+				3356F7A619CA8FE40060023D /* base_encourage.mp3 in Resources */,
+				3356F7A819CA8FE40060023D /* name_default_alt.mp3 in Resources */,
+				3356F7AD19CA8FE40060023D /* name_sam.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

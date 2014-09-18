@@ -270,6 +270,9 @@
 	[transcode launch];
 	[transcode setTerminationHandler:^(NSTask* transcode) {
 		[_progressIndicator stopAnimation:nil];
+		if (_encouragementCheckbox.state) {
+			[self encourage];
+		}
 	}];
 	
 	NSLog(@"arguments: %@", arguments);
@@ -326,7 +329,11 @@
 	NSURL* inputURL = openFilesArray[0];
 	inputFile = [NSString stringWithFormat:@"'%@'", inputURL.path];
 	
-	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, inputURL.pathComponents[inputURL.pathComponents.count -1], currentContainerExtension];
+	NSString* removeExtension = inputURL.pathComponents[inputURL.pathComponents.count - 1];
+	removeExtension = [removeExtension stringByDeletingPathExtension];
+	
+	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, removeExtension, currentContainerExtension];
+	
 	
 //	NSLog(@"ex: %@, form: %@, cod: %@, strat: %@, bit: %@, filein: %@, fileout: %@",
 //		  executable, destFormat, destCodec, destStrat, destBitrate, inputFile, outputFile);
@@ -351,7 +358,7 @@
 									@"LEI24",
 									@"LEI32",
 									@"LEF32",
-									@"LEI64",
+									@"LEF64",
 									];
 	
 	bool supported = YES;
@@ -413,6 +420,41 @@
 		return NO;
 	}
 	
+}
+
+-(void)encourage {
+	
+	NSSound* sound = [NSSound soundNamed:@"base_encourage.mp3"];
+	sound.delegate = self;
+	[sound play];
+	
+	
+}
+
+-(void)sound:(NSSound *)sound didFinishPlaying:(BOOL)aBool {
+	
+	NSString* currentUser = NSFullUserName();
+	NSString* filename;
+	
+	if ([currentUser rangeOfString:@"Michael"].location != NSNotFound) {
+		filename = @"name_michael.mp3";
+	} else if ([currentUser rangeOfString:@"Cody"].location != NSNotFound) {
+		filename = @"name_cody.mp3";
+	} else if ([currentUser rangeOfString:@"Khris"].location != NSNotFound) {
+		filename = @"name_khris.mp3";
+	} else if ([currentUser rangeOfString:@"Kurt"].location != NSNotFound) {
+		filename = @"name_kurt.mp3";
+	} else if ([currentUser rangeOfString:@"Sam"].location != NSNotFound) {
+		filename = @"name_sam.mp3";
+	} else if ([currentUser rangeOfString:@"Scott"].location != NSNotFound) {
+		filename = @"name_scott.mp3";
+	} else {
+		filename = @"name_default_alt.mp3";
+	}
+
+	
+	NSSound* name = [NSSound soundNamed:filename];
+	[name play];
 }
 
 @end

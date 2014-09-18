@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SGG_ConverterControl : NSObject
+@interface SGG_ConverterControl : NSObject <NSSoundDelegate>
 
 @property (weak) IBOutlet NSPopUpButton *namePopup;
 @property (weak) IBOutlet NSTextField *sourceLabel;
