@@ -25,6 +25,7 @@
 
 - (IBAction)openFileNamed:(id)sender;
 - (IBAction)saveTo:(NSButton *)sender;
+- (IBAction)destinationChanged:(NSTextField *)sender;
 - (IBAction)containerChanged:(NSPopUpButton *)sender;
 - (IBAction)compressionChanged:(NSPopUpButton *)sender;
 - (IBAction)compressionStrategyChanged:(NSPopUpButton *)sender;

@@ -23,6 +23,7 @@
 	NSUserDefaults* defaults;
 	
 	bool userStarted;
+	bool isRunning;
 }
 
 @end
@@ -181,6 +182,11 @@
 
 }
 
+- (IBAction)destinationChanged:(NSTextField *)sender {
+	
+	[self canTranscode];
+}
+
 - (IBAction)containerChanged:(NSPopUpButton *)sender {
 	
 	currentContainerHuman = sender.selectedItem.title;
@@ -254,114 +260,146 @@
 
 - (IBAction)encodeButtonPressed:(NSButton *)sender {
 	
-	NSPipe* outputPipe = [[NSPipe alloc] init];
 	
 	
 	NSArray* arguments = [self determineArguments];
 
 	
-	NSTask* transcode = [[NSTask alloc] init];
-	[transcode setStandardOutput:outputPipe];
-	[transcode setStandardError:outputPipe];
-	
-	[[outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
-	
-	[[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
-		
-		NSData* output = [[outputPipe fileHandleForReading] availableData];
-		NSString* outString = [[NSString alloc ] initWithData:output encoding:NSUTF8StringEncoding];
-		
-		dispatch_sync(dispatch_get_main_queue(), ^{
-			_outputTextArea.string = [_outputTextArea.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outString]];
-			
-			NSRange range;
-			range = NSMakeRange([_outputTextArea.string length], 0);
-			[_outputTextArea scrollRangeToVisible:range];
-		});
-		
-		
-	}];
-	
-	
-	[transcode setLaunchPath:@"/bin/bash"];
-	[transcode setArguments:arguments];
-	[_progressIndicator startAnimation:nil];
-	[transcode launch];
-	[transcode setTerminationHandler:^(NSTask* transcode) {
-		[_progressIndicator stopAnimation:nil];
-		if (_encouragementCheckbox.state) {
-			[self encourage];
-		}
-	}];
-	
-	NSLog(@"arguments: %@", arguments);
+//	NSTask* transcode = [[NSTask alloc] init];
+//	
+//
+//	
+//	
+//	[transcode setLaunchPath:@"/bin/bash"];
+//	[transcode setArguments:arguments];
+//	[transcode launch];
+//
+//	
+//	NSLog(@"arguments: %@", arguments);
+
+	[self transcodeWithArguments:arguments];
+
 }
+
 
 #pragma mark MISC
 
--(void)updateDefaults {
+-(void)transcodeWithArguments:(NSArray*)arguments {
 	
-	if (userStarted) {
-		[defaults setBool:_encouragementCheckbox.state forKey:@"encouragementEnabled"];
+	dispatch_queue_t taskQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+	dispatch_async(taskQueue, ^{
 		
-		[defaults setObject:_namePopup.selectedItem.title forKey:@"currentUser"];
+		isRunning = YES;
 		
-		[defaults setObject:currentContainerHuman forKey:@"currentContainer"];
+		@try {
+			[_progressIndicator startAnimation:nil];
+
+			
+			NSTask* transcode = [[NSTask alloc] init];
+			transcode.launchPath = @"/usr/bin/afconvert";
+//			transcode.launchPath = @"/bin/echo";
+			transcode.arguments = arguments;
+			
+			
+			NSPipe* outputPipe = [[NSPipe alloc] init];
+			[transcode setStandardOutput:outputPipe];
+			[transcode setStandardError:outputPipe];
+
+			[[outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+
+			[[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
+
+				NSData* output = [[outputPipe fileHandleForReading] availableData];
+				NSString* outString = [[NSString alloc ] initWithData:output encoding:NSUTF8StringEncoding];
+
+				dispatch_sync(dispatch_get_main_queue(), ^{
+					_outputTextArea.string = [_outputTextArea.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outString]];
+
+					NSRange range;
+					range = NSMakeRange([_outputTextArea.string length], 0);
+					[_outputTextArea scrollRangeToVisible:range];
+				});
+				
+				[[outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+			}];
+			
+			[transcode launch];
+			
+			[transcode waitUntilExit];
+			
+			[transcode setTerminationHandler:^(NSTask* transcode) {
+				[_progressIndicator stopAnimation:nil];
+				if (_encouragementCheckbox.state) {
+					[self encourage];
+				}
+			}];
+			
+		}
+		@catch (NSException *exception) {
+			NSLog(@"Problem Running Task: %@", [exception description]);
+		}
+		@finally {
+			isRunning = NO;
+			[self canTranscode];
+		}
 		
-		[defaults setObject:_compressionPopup.selectedItem.title forKey:@"currentCompression"];
-		
-		[defaults setObject:_compressionStrategy.selectedItem.title forKey:@"currentCompressionStrategy"];
-		
-		NSInteger bitrate = [_bitRateTextField.stringValue integerValue];
-		[defaults setObject:[NSNumber numberWithInteger:bitrate] forKey:@"currentBitrate"];
-	}
+	});
+	
+	
 }
+
+
+
 
 -(NSArray*)determineArguments {
 	NSString* stringThing = @"-c";
 	NSString* executable = @"/usr/bin/afconvert -v ";
 	NSString* destFormat, *destCodec, *destStrat, *destBitrate, *inputFile, *outputFile;
 	
-	destFormat = [NSString stringWithFormat:@"-f '%@'", currentContainerCommand];
-	destCodec = [NSString stringWithFormat:@"-d '%@'", currentCompressionType];
+	destFormat = [NSString stringWithFormat:@"'%@'", currentContainerCommand];
+	destCodec = [NSString stringWithFormat:@"'%@'", currentCompressionType];
+	
+	NSString* stratFlag = @" -s ";
 	
 	if ([_compressionStrategy.titleOfSelectedItem isEqualToString:@"CBR"]) {
-		destStrat = @"-s 0";
+		destStrat = @"0";
 	} else if ([_compressionStrategy.titleOfSelectedItem isEqualToString:@"ABR"]) {
-		destStrat = @"-s 1";
+		destStrat = @"1";
 	} else if ([_compressionStrategy.titleOfSelectedItem isEqualToString:@"VBR Constrained"]) {
-		destStrat = @"-s 2";
+		destStrat = @"2";
 	} else if ([_compressionStrategy.titleOfSelectedItem isEqualToString:@"VBR"]) {
-		destStrat = @"-s 3";
+		destStrat = @"3";
 	} else {
-		destStrat = @"-s 3";
+		destStrat = @"3";
 	}
 	
+	NSString* bitrateFlag = @" -b ";
 
-	destBitrate = [NSString stringWithFormat:@"-b '%@'", _bitRateTextField.stringValue];
+	destBitrate = [NSString stringWithFormat:@"'%@'", _bitRateTextField.stringValue];
 	
 	if (![self compressionTypeSupportsBitrate:currentCompressionType]) {
 		destBitrate = @"";
 		destStrat = @"";
+		bitrateFlag = @"";
+		stratFlag = @"";
 	}
 
 	NSURL* inputURL = openFilesArray[0];
-	inputFile = [NSString stringWithFormat:@"'%@'", inputURL.path];
+//	inputFile = [NSString stringWithFormat:@"'%@'", inputURL.path];
+	inputFile = [NSString stringWithFormat:@"%@", inputURL.path];
 	
 	NSString* removeExtension = inputURL.pathComponents[inputURL.pathComponents.count - 1];
 	removeExtension = [removeExtension stringByDeletingPathExtension];
 	
-	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, removeExtension, currentContainerExtension];
+//	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, removeExtension, currentContainerExtension];
+	outputFile = [NSString stringWithFormat:@"%@/%@.%@", _destinationField.stringValue, removeExtension, currentContainerExtension];
 	
+
 	
-//	NSLog(@"ex: %@, form: %@, cod: %@, strat: %@, bit: %@, filein: %@, fileout: %@",
-//		  executable, destFormat, destCodec, destStrat, destBitrate, inputFile, outputFile);
-//	return nil;
+//	NSString* command = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, destStrat, destBitrate, inputFile, outputFile];
 	
-	NSString* command = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, destStrat, destBitrate, inputFile, outputFile];
-	
-//	return @[stringThing, executable, destFormat, destCodec, destStrat, destBitrate, inputFile, outputFile];
-	return @[stringThing, command];
+	return @[@" -v ", @" -f ", destFormat, @" -d ", destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, @" -o ", outputFile];
+//	return @[stringThing, command];
 }
 
 -(bool)compressionTypeSupportsBitrate:(NSString*)compressionType {
@@ -431,7 +469,7 @@
 
 -(BOOL)canTranscode {
 	
-	if (![_sourceLabel.stringValue isEqualToString:@""] && ![_destinationField.stringValue isEqualToString:@""]) {
+	if (![_sourceLabel.stringValue isEqualToString:@""] && ![_destinationField.stringValue isEqualToString:@""] && !isRunning) {
 		[_encodeButton setEnabled:YES];
 		return YES;
 	} else {
@@ -474,6 +512,25 @@
 	
 	NSSound* name = [NSSound soundNamed:filename];
 	[name play];
+}
+
+
+-(void)updateDefaults {
+	
+	if (userStarted) {
+		[defaults setBool:_encouragementCheckbox.state forKey:@"encouragementEnabled"];
+		
+		[defaults setObject:_namePopup.selectedItem.title forKey:@"currentUser"];
+		
+		[defaults setObject:currentContainerHuman forKey:@"currentContainer"];
+		
+		[defaults setObject:_compressionPopup.selectedItem.title forKey:@"currentCompression"];
+		
+		[defaults setObject:_compressionStrategy.selectedItem.title forKey:@"currentCompressionStrategy"];
+		
+		NSInteger bitrate = [_bitRateTextField.stringValue integerValue];
+		[defaults setObject:[NSNumber numberWithInteger:bitrate] forKey:@"currentBitrate"];
+	}
 }
 
 @end
