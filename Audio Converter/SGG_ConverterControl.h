@@ -19,6 +19,7 @@
 @property (weak) IBOutlet NSTextField *bitRateTextField;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 @property (weak) IBOutlet NSButton *encouragementCheckbox;
+@property (weak) IBOutlet NSButton *encodeButton;
 
 
 - (IBAction)nameChanged:(NSPopUpButton *)sender;

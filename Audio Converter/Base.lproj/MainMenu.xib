@@ -25,6 +25,7 @@
                 <outlet property="containerChanged" destination="vTH-33-Nhy" id="YGc-JH-yGv"/>
                 <outlet property="containerPopup" destination="vTH-33-Nhy" id="sJA-oE-N2l"/>
                 <outlet property="destinationField" destination="mZk-fx-3ee" id="YAe-nB-DHv"/>
+                <outlet property="encodeButton" destination="IXB-Ab-IK0" id="Un4-ec-z4f"/>
                 <outlet property="encouragementCheckbox" destination="qyg-FX-JMR" id="ZAQ-cF-kPs"/>
                 <outlet property="namePopup" destination="ne6-ld-YEq" id="ZiH-hQ-ZKH"/>
                 <outlet property="progressIndicator" destination="f0a-qb-L5m" id="KZX-vf-j26"/>

@@ -132,18 +132,6 @@
 				</dict>
 				<dict>
 					<key>human</key>
-					<string>MP3</string>
-					<key>actual</key>
-					<string>.mp3</string>
-				</dict>
-				<dict>
-					<key>human</key>
-					<string>AC3</string>
-					<key>actual</key>
-					<string>AC-3</string>
-				</dict>
-				<dict>
-					<key>human</key>
 					<string>AAC</string>
 					<key>actual</key>
 					<string>aac</string>
@@ -153,23 +141,6 @@
 					<string>Apple Lossless</string>
 					<key>actual</key>
 					<string>alac</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>command</key>
-			<string>MPG3</string>
-			<key>human</key>
-			<string>mp3</string>
-			<key>container</key>
-			<string>mp3</string>
-			<key>compressionTypes</key>
-			<array>
-				<dict>
-					<key>human</key>
-					<string>MP3</string>
-					<key>actual</key>
-					<string>mp3</string>
 				</dict>
 			</array>
 		</dict>

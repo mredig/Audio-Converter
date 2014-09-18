@@ -30,6 +30,8 @@
 
 @implementation SGG_ConverterControl
 
+#pragma mark INIT AND SETUP
+
 -(void)awakeFromNib {
 	
 	defaults = [NSUserDefaults standardUserDefaults];
@@ -65,9 +67,9 @@
 											   @"VBR",
 											   ]];
 	
-	userStarted = YES;
 	
 	[self restoreUserSettings];
+	userStarted = YES;
 }
 
 -(void)restoreUserSettings {
@@ -77,15 +79,20 @@
 	[_encouragementCheckbox setState:[defaults boolForKey:@"encouragementEnabled"]];
 	
 	[_containerPopup selectItemWithTitle:[defaults objectForKey:@"currentContainer"]];
-	[self populateCompressionPopup];
+//	[self populateCompressionPopup];
+	[self containerChanged:_containerPopup];
 	
 	[_compressionPopup selectItemWithTitle:[defaults objectForKey:@"currentCompression"]];
+	[self compressionChanged:_compressionPopup];
+	
 	[_compressionStrategy selectItemWithTitle:[defaults objectForKey:@"currentCompressionStrategy"]];
 	
 	
 	NSInteger bitrate = [[defaults objectForKey:@"currentBitrate"] integerValue];
 	[_bitRateTextField setStringValue:[NSString stringWithFormat:@"%i", (int)bitrate]];
 		
+	[self enableOrDisableVariableBitrate];
+
 }
 
 -(void)populateConatinerPopup {
@@ -123,9 +130,12 @@
 	
 }
 
+#pragma mark INTERFACE INPUT METHODS
+
 - (IBAction)nameChanged:(NSPopUpButton *)sender {
 	
 	[self updateDefaults];
+	[self canTranscode];
 
 }
 
@@ -147,23 +157,16 @@
 			
 			[_destinationField setStringValue:urlTwo.path];
 		}
+		[self canTranscode];
 
 	}];
+	[self canTranscode];
 
 
 }
 
 - (IBAction)saveTo:(NSButton *)sender {
-	
-//	NSSavePanel* saveWindow = [NSSavePanel savePanel];
-//	[saveWindow beginWithCompletionHandler:^(NSInteger result) {
-//		NSURL* url = [saveWindow URL];
-//		NSURL* urlTwo = [self containerPathOfPathFromPathComponents:url.pathComponents];
-//		
-//		[_destinationField setStringValue:urlTwo.path];
-//	}];
-	
-	
+		
 	NSOpenPanel* openWindow = [NSOpenPanel openPanel];
 	[openWindow setPrompt:@"Save To:"];
 	[openWindow setCanChooseDirectories:YES];
@@ -177,9 +180,11 @@
 			NSURL* url = [openWindow URLs][0];
 			[_destinationField setStringValue:url.path];
 		}
-		
+		[self canTranscode];
+
 	}];
-	
+	[self canTranscode];
+
 }
 
 - (IBAction)containerChanged:(NSPopUpButton *)sender {
@@ -199,13 +204,13 @@
 	[self populateCompressionPopup];
 	
 	[self updateDefaults];
+	[self canTranscode];
 
 }
 
 - (IBAction)compressionChanged:(NSPopUpButton *)sender {
 	
-	[self updateDefaults];
-	
+
 	NSString* currentCompressionTitle = _compressionPopup.titleOfSelectedItem;
 	
 	for (int i = 0; i < currentContainerCodecs.count; i++) {
@@ -219,58 +224,37 @@
 	}
 
 	
-	bool isCompatible = [self compressionTypeSupportsBitrate:currentCompressionType];
-	if (isCompatible) {
-		[_compressionStrategy setEnabled:YES];;
-		[_bitRateTextField setEnabled:YES];
-	} else {
-		[_compressionStrategy setEnabled:NO];;
-		[_bitRateTextField setEnabled:NO];
-		
-	}
+	[self enableOrDisableVariableBitrate];
+
+	
+	[self updateDefaults];
+	[self canTranscode];
 	
 	
 }
 
+
+
 - (IBAction)compressionStrategyChanged:(NSPopUpButton *)sender {
 	[self updateDefaults];
-	
-	
+	[self canTranscode];
 
 }
 
 - (IBAction)bitRateChanged:(NSTextField *)sender {
 	
 	[self updateDefaults];
+	[self canTranscode];
 
 }
 
 - (IBAction)encouragementChanged:(NSButton *)sender {
 	[self updateDefaults];
+	[self canTranscode];
 
 }
 
--(void)updateDefaults {
-	
-	if (userStarted) {
-		[defaults setBool:_encouragementCheckbox.state forKey:@"encouragementEnabled"];
-		
-		[defaults setObject:_namePopup.selectedItem.title forKey:@"currentUser"];
-		
-		[defaults setObject:currentContainerHuman forKey:@"currentContainer"];
-		
-		[defaults setObject:_compressionPopup.selectedItem.title forKey:@"currentCompression"];
-		
-		[defaults setObject:_compressionStrategy.selectedItem.title forKey:@"currentCompressionStrategy"];
-		
-		NSInteger bitrate = [_bitRateTextField.stringValue integerValue];
-		[defaults setObject:[NSNumber numberWithInteger:bitrate] forKey:@"currentBitrate"];
 
-	}
-	
-		
-	
-}
 
 
 
@@ -291,9 +275,29 @@
 	NSLog(@"arguments: %@", arguments);
 }
 
+#pragma mark MISC
+
+-(void)updateDefaults {
+	
+	if (userStarted) {
+		[defaults setBool:_encouragementCheckbox.state forKey:@"encouragementEnabled"];
+		
+		[defaults setObject:_namePopup.selectedItem.title forKey:@"currentUser"];
+		
+		[defaults setObject:currentContainerHuman forKey:@"currentContainer"];
+		
+		[defaults setObject:_compressionPopup.selectedItem.title forKey:@"currentCompression"];
+		
+		[defaults setObject:_compressionStrategy.selectedItem.title forKey:@"currentCompressionStrategy"];
+		
+		NSInteger bitrate = [_bitRateTextField.stringValue integerValue];
+		[defaults setObject:[NSNumber numberWithInteger:bitrate] forKey:@"currentBitrate"];
+	}
+}
+
 -(NSArray*)determineArguments {
 	NSString* stringThing = @"-c";
-	NSString* executable = @"/usr/bin/afconvert";
+	NSString* executable = @"/usr/bin/afconvert -v ";
 	NSString* destFormat, *destCodec, *destStrat, *destBitrate, *inputFile, *outputFile;
 	
 	destFormat = [NSString stringWithFormat:@"-f '%@'", currentContainerCommand];
@@ -348,7 +352,6 @@
 									@"LEI32",
 									@"LEF32",
 									@"LEI64",
-									
 									];
 	
 	bool supported = YES;
@@ -362,6 +365,21 @@
 	return supported;
 }
 
+-(void)enableOrDisableVariableBitrate {
+	
+	bool isCompatible = [self compressionTypeSupportsBitrate:currentCompressionType];
+	
+//	NSLog(@"currentType: %@ isComp: %i", currentCompressionType, isCompatible);
+	if (isCompatible) {
+		[_compressionStrategy setEnabled:YES];;
+		[_bitRateTextField setEnabled:YES];
+	} else {
+		[_compressionStrategy setEnabled:NO];;
+		[_bitRateTextField setEnabled:NO];
+		
+	}
+	
+}
 
 -(NSURL*)containerPathOfPathFromPathComponents:(NSArray*)filePathComponents {
 	
@@ -384,4 +402,17 @@
 	
 	return url;
 }
+
+-(BOOL)canTranscode {
+	
+	if (![_sourceLabel.stringValue isEqualToString:@""] && ![_destinationField.stringValue isEqualToString:@""]) {
+		[_encodeButton setEnabled:YES];
+		return YES;
+	} else {
+		[_encodeButton setEnabled:NO];
+		return NO;
+	}
+	
+}
+
 @end
