@@ -5,6 +5,10 @@
 	<key>FileTypes</key>
 	<array>
 		<dict>
+			<key>human</key>
+			<string>AIFF</string>
+			<key>command</key>
+			<string>aiff</string>
 			<key>container</key>
 			<string>aif</string>
 			<key>compressionTypes</key>
@@ -36,6 +40,10 @@
 			</array>
 		</dict>
 		<dict>
+			<key>human</key>
+			<string>AIFC</string>
+			<key>command</key>
+			<string>aifc</string>
 			<key>container</key>
 			<string>aifc</string>
 			<key>compressionTypes</key>
@@ -67,6 +75,10 @@
 			</array>
 		</dict>
 		<dict>
+			<key>command</key>
+			<string>m4af</string>
+			<key>human</key>
+			<string>m4a</string>
 			<key>container</key>
 			<string>m4a</string>
 			<key>compressionTypes</key>
@@ -86,6 +98,10 @@
 			</array>
 		</dict>
 		<dict>
+			<key>command</key>
+			<string>caff</string>
+			<key>human</key>
+			<string>CAF</string>
 			<key>container</key>
 			<string>caf</string>
 			<key>compressionTypes</key>
@@ -141,6 +157,10 @@
 			</array>
 		</dict>
 		<dict>
+			<key>command</key>
+			<string>MPG3</string>
+			<key>human</key>
+			<string>mp3</string>
 			<key>container</key>
 			<string>mp3</string>
 			<key>compressionTypes</key>
@@ -154,8 +174,12 @@
 			</array>
 		</dict>
 		<dict>
-			<key>container</key>
+			<key>command</key>
 			<string>Sd2f</string>
+			<key>human</key>
+			<string>Sd2f</string>
+			<key>container</key>
+			<string>sd2</string>
 			<key>compressionTypes</key>
 			<array>
 				<dict>
@@ -185,6 +209,10 @@
 			</array>
 		</dict>
 		<dict>
+			<key>command</key>
+			<string>WAVE</string>
+			<key>human</key>
+			<string>wav</string>
 			<key>container</key>
 			<string>wav</string>
 			<key>compressionTypes</key>
@@ -227,6 +255,15 @@
 				</dict>
 			</array>
 		</dict>
+	</array>
+	<key>sggMembers</key>
+	<array>
+		<string>Khris</string>
+		<string>Michael</string>
+		<string>Sam</string>
+		<string>Cody</string>
+		<string>Kurt</string>
+		<string>Scott</string>
 	</array>
 </dict>
 </plist>

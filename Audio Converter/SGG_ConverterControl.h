@@ -18,12 +18,17 @@
 @property (weak) IBOutlet NSPopUpButton *compressionStrategy;
 @property (weak) IBOutlet NSTextField *bitRateTextField;
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+@property (weak) IBOutlet NSButton *encouragementCheckbox;
 
+
+- (IBAction)nameChanged:(NSPopUpButton *)sender;
 - (IBAction)openFileNamed:(id)sender;
 - (IBAction)saveTo:(NSButton *)sender;
 - (IBAction)containerChanged:(NSPopUpButton *)sender;
 - (IBAction)compressionChanged:(NSPopUpButton *)sender;
 - (IBAction)compressionStrategyChanged:(NSPopUpButton *)sender;
+- (IBAction)bitRateChanged:(NSTextField *)sender;
+- (IBAction)encouragementChanged:(NSButton *)sender;
 
 - (IBAction)encodeButtonPressed:(NSButton *)sender;
 
