@@ -17,11 +17,13 @@
 @property (weak) IBOutlet NSPopUpButton *compressionPopup;
 @property (weak) IBOutlet NSPopUpButton *compressionStrategyPopup;
 @property (weak) IBOutlet NSTextField *bitrateTextField;
+@property (weak) IBOutlet id converterController;
 
 
 
 
 - (IBAction)plusButtonPressed:(NSButton *)sender;
 - (IBAction)minusButtonPressed:(NSButton *)sender;
+- (IBAction)tablePressed:(NSTableView *)sender;
 
 @end

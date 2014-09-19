@@ -198,7 +198,7 @@
 
 - (IBAction)containerChanged:(NSPopUpButton *)sender {
 	
-	currentContainerHuman = sender.selectedItem.title;
+	currentContainerHuman = _containerPopup.selectedItem.title;
 	
 	for (NSDictionary* containerDict in fileTypes) {
 		if ([containerDict[@"human"] isEqualToString:currentContainerHuman]) {

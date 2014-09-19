@@ -14,6 +14,8 @@
 	NSMutableArray* presets;
 	
 	NSUserDefaults* defaults;
+	
+	NSInteger defaultPresets;
 }
 
 @end
@@ -54,10 +56,24 @@
 		preset.canDelete = NO;
 		[presets addObject:preset];
 		
+		defaultPresets ++;
 	}
 	
+	NSArray* savedPresets = [defaults objectForKey:@"savedPresets"];
+
+	for (NSDictionary* dictionaryPreset in savedPresets) {
+		SGG_Preset* preset = [[SGG_Preset alloc] init];
+		preset.title = dictionaryPreset[@"title"];
+		preset.container = dictionaryPreset[@"container"];
+		preset.compression = dictionaryPreset[@"compression"];
+		preset.strategy = dictionaryPreset[@"strategy"];
+		preset.bitrate = [dictionaryPreset[@"bitrate"] integerValue];
+		preset.canDelete = YES;
+		
+		[presets addObject:preset];
+	}
 	
-	
+	[_presetsTabelView reloadData];
 }
 
 
@@ -75,25 +91,52 @@
 	[presets addObject:preset];
 	
 	[_presetsTabelView reloadData];
+
+	[self updateDefaults];
 	
-	
-//	NSLog(@"plus pressed: %@", [self tableView:nil objectValueForTableColumn:nil row:presets.count - 1]);
 	
 }
 
 - (IBAction)minusButtonPressed:(NSButton *)sender {
+	if (_presetsTabelView.selectedRow > -1) {
+		NSInteger row = _presetsTabelView.selectedRow;
+		[_presetsTabelView abortEditing];
+		SGG_Preset* preset = presets[row];
+		if (preset.canDelete == NO) {
+			return;
+		}
+		if (row > -1) {
+			[presets removeObjectAtIndex:row];
+		}
+		
+		[_presetsTabelView reloadData];
+		[self updateDefaults];
+	}
 
-	NSInteger row = _presetsTabelView.selectedRow;
-	[_presetsTabelView abortEditing];
-	SGG_Preset* preset = presets[row];
-	if (preset.canDelete == NO) {
-		return;
+}
+
+- (IBAction)tablePressed:(NSTableView *)sender {
+	if (_presetsTabelView.selectedRow > -1) {
+		SGG_Preset* preset = presets[_presetsTabelView.selectedRow];
+//		NSLog(@"selected element: %@", preset.title);
+		
+		SGG_ConverterControl* controller = (SGG_ConverterControl*)_converterController;
+		
+		[_containerPopup selectItemWithTitle:preset.container];
+		[controller containerChanged:_containerPopup];
+		
+		[_compressionPopup selectItemWithTitle:preset.compression];
+		[controller compressionChanged:_compressionPopup];
+		
+		[_compressionStrategyPopup selectItemWithTitle:preset.strategy];
+		[controller compressionStrategyChanged:_compressionStrategyPopup];
+		
+		[_bitrateTextField setStringValue:[NSString stringWithFormat:@"%i", (int)preset.bitrate]];
+		[controller bitRateChanged:_bitrateTextField];
+		
+		
 	}
-	if (row > -1) {
-		[presets removeObjectAtIndex:row];
-	}
-	
-	[_presetsTabelView reloadData];
+
 }
 
 -(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -108,11 +151,35 @@
 	SGG_Preset* preset = presets[row];
 	preset.title = object;
 	
+	[self updateDefaults];
 	
 }
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
 	return presets.count;
 }
+
+
+-(void)updateDefaults {
+	
+	NSMutableArray* newSavePresets = [[NSMutableArray alloc] init];
+	
+	for (NSInteger i = defaultPresets; i < presets.count; i++) {
+		SGG_Preset* preset = presets[i];
+		
+		NSArray* presetArray = @[preset.title, preset.container, preset.compression, preset.strategy, [NSNumber numberWithInteger:preset.bitrate]];
+		NSArray* presetKeys = @[@"title", @"container", @"compression", @"strategy", @"bitrate"];
+		
+		NSDictionary* presetDictionary = [NSDictionary dictionaryWithObjects:presetArray forKeys:presetKeys];
+		
+		[newSavePresets addObject:presetDictionary];
+	}
+	
+
+	
+	[defaults setObject:newSavePresets forKey:@"savedPresets"];
+	
+}
+
 
 @end
