@@ -13,12 +13,7 @@
 
 
 @property (weak) IBOutlet NSTableView *presetsTabelView;
-@property (weak) IBOutlet NSPopUpButton *containerPopup;
-@property (weak) IBOutlet NSPopUpButton *compressionPopup;
-@property (weak) IBOutlet NSPopUpButton *compressionStrategyPopup;
-@property (weak) IBOutlet NSTextField *bitrateTextField;
 @property (weak) IBOutlet id converterController;
-@property (weak) IBOutlet NSButton *monoCheckbox;
 
 
 

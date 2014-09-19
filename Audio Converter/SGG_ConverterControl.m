@@ -40,15 +40,6 @@
 	defaults = [NSUserDefaults standardUserDefaults];
 	
 	[_sourceLabel setStringValue:@""];
-	[_namePopup addItemsWithTitles:@[
-									 @"--------------",
-									 @"Khris",
-									 @"Michael",
-									 @"Sam",
-									 @"Cody",
-									 @"Kurt",
-									 @"Scott",
-									 ]];
 	
 	
 	[_compressionPopup removeAllItems];
@@ -80,7 +71,6 @@
 
 -(void)restoreUserSettings {
 	
-	[_namePopup selectItemWithTitle:[defaults objectForKey:@"currentUser"]];
 	
 	[_encouragementCheckbox setState:[defaults boolForKey:@"encouragementEnabled"]];
 	
@@ -544,9 +534,7 @@
 		[defaults setBool:_encouragementCheckbox.state forKey:@"encouragementEnabled"];
 		
 		[defaults setBool:_monoCheckbox.state forKey:@"monoEnabled"];
-		
-		[defaults setObject:_namePopup.selectedItem.title forKey:@"currentUser"];
-		
+				
 		[defaults setObject:currentContainerHuman forKey:@"currentContainer"];
 		
 		[defaults setObject:_compressionPopup.selectedItem.title forKey:@"currentCompression"];

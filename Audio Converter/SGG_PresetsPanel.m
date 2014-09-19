@@ -16,6 +16,8 @@
 	NSUserDefaults* defaults;
 	
 	NSInteger defaultPresets;
+	
+	SGG_ConverterControl* controller;
 }
 
 @end
@@ -35,6 +37,8 @@
 }
 
 -(void)awakeFromNib {
+	controller = (SGG_ConverterControl*)_converterController;
+
 	
 	NSString* path = [[NSBundle mainBundle] pathForResource:@"FileTypeLibrary" ofType:@"plist"];
 	
@@ -85,11 +89,11 @@
 	SGG_Preset* preset = [[SGG_Preset alloc] init];
 	preset.canDelete = YES;
 	preset.title = @"New Preset";
-	preset.container = _containerPopup.titleOfSelectedItem;
-	preset.compression = _compressionPopup.titleOfSelectedItem;
-	preset.strategy = _compressionStrategyPopup.titleOfSelectedItem;
-	preset.bitrate = [_bitrateTextField integerValue];
-	preset.mono = (bool)_monoCheckbox.state;
+	preset.container = controller.containerPopup.titleOfSelectedItem;
+	preset.compression = controller.compressionPopup.titleOfSelectedItem;
+	preset.strategy = controller.compressionStrategy.titleOfSelectedItem;
+	preset.bitrate = [controller.bitRateTextField integerValue];
+	preset.mono = (bool)controller.monoCheckbox.state;
 	
 	[presets addObject:preset];
 	
@@ -123,22 +127,21 @@
 		SGG_Preset* preset = presets[_presetsTabelView.selectedRow];
 //		NSLog(@"selected element: %@", preset.title);
 		
-		SGG_ConverterControl* controller = (SGG_ConverterControl*)_converterController;
 		
-		[_containerPopup selectItemWithTitle:preset.container];
-		[controller containerChanged:_containerPopup];
+		[controller.containerPopup selectItemWithTitle:preset.container];
+		[controller containerChanged:controller.containerPopup];
 		
-		[_compressionPopup selectItemWithTitle:preset.compression];
-		[controller compressionChanged:_compressionPopup];
+		[controller.compressionPopup selectItemWithTitle:preset.compression];
+		[controller compressionChanged:controller.compressionPopup];
 		
-		[_compressionStrategyPopup selectItemWithTitle:preset.strategy];
-		[controller compressionStrategyChanged:_compressionStrategyPopup];
+		[controller.compressionStrategy selectItemWithTitle:preset.strategy];
+		[controller compressionStrategyChanged:controller.compressionStrategy];
 		
-		[_bitrateTextField setStringValue:[NSString stringWithFormat:@"%i", (int)preset.bitrate]];
-		[controller bitRateChanged:_bitrateTextField];
+		[controller.bitRateTextField setStringValue:[NSString stringWithFormat:@"%i", (int)preset.bitrate]];
+		[controller bitRateChanged:controller.bitRateTextField];
 		
-		[_monoCheckbox setState:preset.mono];
-		[controller monoButtonPressed:_monoCheckbox];
+		[controller.monoCheckbox setState:preset.mono];
+		[controller monoButtonPressed:controller.monoCheckbox];
 	}
 
 }

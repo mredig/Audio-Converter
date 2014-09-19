@@ -20,7 +20,7 @@
         <customObject id="cDL-OY-Zev" customClass="SGG_ConverterControl">
             <connections>
                 <outlet property="bitRateTextField" destination="aqE-Sr-bD0" id="3ar-Fs-isr"/>
-                <outlet property="compressionPopup" destination="ifL-fR-3YS" id="HKz-Gh-3Bw"/>
+                <outlet property="compressionPopup" destination="ifL-fR-3YS" id="14s-Zg-ED9"/>
                 <outlet property="compressionStrategy" destination="2YL-U2-lhu" id="rqV-xK-GM0"/>
                 <outlet property="containerChanged" destination="vTH-33-Nhy" id="YGc-JH-yGv"/>
                 <outlet property="containerPopup" destination="vTH-33-Nhy" id="sJA-oE-N2l"/>
@@ -30,20 +30,14 @@
                 <outlet property="monoCheckbox" destination="BsF-cr-ocx" id="TQz-qO-TZD"/>
                 <outlet property="outputTextArea" destination="j6w-Bf-x8n" id="wmI-1o-wv9"/>
                 <outlet property="presetsPanel" destination="4Zd-NT-jyu" id="laG-cz-ZR8"/>
-                <outlet property="presetsTable" destination="afE-eZ-3VE" id="9fu-Um-BIZ"/>
                 <outlet property="progressIndicator" destination="f0a-qb-L5m" id="KZX-vf-j26"/>
                 <outlet property="sourceLabel" destination="irg-CA-opt" id="0Yn-rc-bbn"/>
             </connections>
         </customObject>
         <customObject id="K3Z-EC-eRJ" customClass="SGG_PresetsPanel">
             <connections>
-                <outlet property="bitrateTextField" destination="aqE-Sr-bD0" id="2TW-WT-sYE"/>
-                <outlet property="compressionPopup" destination="ifL-fR-3YS" id="ifo-07-bDH"/>
-                <outlet property="compressionStrategyPopup" destination="2YL-U2-lhu" id="h4s-f3-TuD"/>
-                <outlet property="containerPopup" destination="vTH-33-Nhy" id="83W-hf-ubS"/>
                 <outlet property="converterController" destination="cDL-OY-Zev" id="OdV-6Q-35u"/>
                 <outlet property="minusButtonPressed" destination="xW5-mE-FVJ" id="Yfe-jy-qKS"/>
-                <outlet property="monoCheckbox" destination="BsF-cr-ocx" id="HV3-B8-HMx"/>
                 <outlet property="presetsTabelView" destination="afE-eZ-3VE" id="obz-8r-k5D"/>
                 <outlet property="tablePressed" destination="tyd-zR-vEb" id="KAF-zI-5Pg"/>
             </connections>
@@ -411,10 +405,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="490" height="242"/>
-                                    <size key="maxSize" width="496" height="10000000"/>
+                                    <size key="maxSize" width="507" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="490" height="242"/>
-                                    <size key="maxSize" width="496" height="10000000"/>
+                                    <size key="maxSize" width="507" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -553,11 +547,11 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="fAB-yg-Uhw">
-                            <rect key="frame" x="1" y="2" width="0.0" height="15"/>
+                            <rect key="frame" x="-7" y="2" width="0.0" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Q3T-bZ-XeJ">
-                            <rect key="frame" x="-14" y="17" width="15" height="0.0"/>
+                            <rect key="frame" x="-14" y="9" width="15" height="0.0"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="ai6-Y6-5kt">

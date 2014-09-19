@@ -11,7 +11,6 @@
 
 @interface SGG_ConverterControl : NSObject <NSSoundDelegate>
 
-@property (weak) IBOutlet NSPopUpButton *namePopup;
 @property (weak) IBOutlet NSTextField *sourceLabel;
 @property (weak) IBOutlet NSTextField *destinationField;
 @property (weak) IBOutlet NSPopUpButton *containerPopup;
