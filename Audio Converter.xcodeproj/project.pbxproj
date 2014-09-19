@@ -19,8 +19,6 @@
 		3356F7AC19CA8FE40060023D /* name_michael.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A319CA8FE40060023D /* name_michael.mp3 */; };
 		3356F7AD19CA8FE40060023D /* name_sam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A419CA8FE40060023D /* name_sam.mp3 */; };
 		3356F7AE19CA8FE40060023D /* name_scott.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3356F7A519CA8FE40060023D /* name_scott.mp3 */; };
-		3356F7B319CACB610060023D /* SGG_PresetsPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3356F7B219CACB610060023D /* SGG_PresetsPanel.m */; };
-		3356F7FC19CBC27D0060023D /* SGG_Preset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3356F7FB19CBC27D0060023D /* SGG_Preset.m */; };
 		33BC9E4D19C91CA500D3F35F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BC9E4C19C91CA500D3F35F /* Cocoa.framework */; };
 		33BC9E5719C91CA500D3F35F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33BC9E5519C91CA500D3F35F /* InfoPlist.strings */; };
 		33BC9E5919C91CA500D3F35F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BC9E5819C91CA500D3F35F /* main.m */; };
@@ -44,10 +42,6 @@
 		3356F7A319CA8FE40060023D /* name_michael.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_michael.mp3; sourceTree = "<group>"; };
 		3356F7A419CA8FE40060023D /* name_sam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_sam.mp3; sourceTree = "<group>"; };
 		3356F7A519CA8FE40060023D /* name_scott.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = name_scott.mp3; sourceTree = "<group>"; };
-		3356F7B119CACB610060023D /* SGG_PresetsPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGG_PresetsPanel.h; sourceTree = "<group>"; };
-		3356F7B219CACB610060023D /* SGG_PresetsPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGG_PresetsPanel.m; sourceTree = "<group>"; };
-		3356F7FA19CBC27D0060023D /* SGG_Preset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGG_Preset.h; sourceTree = "<group>"; };
-		3356F7FB19CBC27D0060023D /* SGG_Preset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGG_Preset.m; sourceTree = "<group>"; };
 		33BC9E4919C91CA500D3F35F /* Audio Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BC9E4C19C91CA500D3F35F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		33BC9E4F19C91CA500D3F35F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -139,10 +133,6 @@
 				33BC9E5F19C91CA500D3F35F /* SGG_AppDelegate.m */,
 				3356F76F19C941030060023D /* SGG_ConverterControl.h */,
 				3356F77019C941030060023D /* SGG_ConverterControl.m */,
-				3356F7B119CACB610060023D /* SGG_PresetsPanel.h */,
-				3356F7B219CACB610060023D /* SGG_PresetsPanel.m */,
-				3356F7FA19CBC27D0060023D /* SGG_Preset.h */,
-				3356F7FB19CBC27D0060023D /* SGG_Preset.m */,
 				33BC9E6119C91CA500D3F35F /* MainMenu.xib */,
 				3356F77319C9615F0060023D /* FileTypeLibrary.plist */,
 				33BC9E6419C91CA500D3F35F /* Images.xcassets */,
@@ -244,8 +234,6 @@
 				3356F77119C941030060023D /* SGG_ConverterControl.m in Sources */,
 				33BC9E6019C91CA500D3F35F /* SGG_AppDelegate.m in Sources */,
 				33BC9E5919C91CA500D3F35F /* main.m in Sources */,
-				3356F7B319CACB610060023D /* SGG_PresetsPanel.m in Sources */,
-				3356F7FC19CBC27D0060023D /* SGG_Preset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

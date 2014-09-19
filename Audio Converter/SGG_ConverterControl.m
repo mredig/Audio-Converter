@@ -24,8 +24,6 @@
 	
 	bool userStarted;
 	bool isRunning;
-	
-	NSPipe* outputPipe;
 }
 
 @end
@@ -71,11 +69,8 @@
 											   ]];
 	
 	
-	[self setupPresetsWindow];
-	
 	[self restoreUserSettings];
 	userStarted = YES;
-	
 }
 
 -(void)restoreUserSettings {
@@ -83,8 +78,6 @@
 	[_namePopup selectItemWithTitle:[defaults objectForKey:@"currentUser"]];
 	
 	[_encouragementCheckbox setState:[defaults boolForKey:@"encouragementEnabled"]];
-	
-	[_monoCheckbox setState:[defaults boolForKey:@"monoEnabled"]];
 	
 	[_containerPopup selectItemWithTitle:[defaults objectForKey:@"currentContainer"]];
 //	[self populateCompressionPopup];
@@ -138,13 +131,6 @@
 	
 }
 
--(void)setupPresetsWindow {
-	
-	
-	
-	
-}
-
 #pragma mark INTERFACE INPUT METHODS
 
 
@@ -174,7 +160,7 @@
 
 }
 
-- (IBAction)saveTo:(id)sender {
+- (IBAction)saveTo:(NSButton *)sender {
 		
 	NSOpenPanel* openWindow = [NSOpenPanel openPanel];
 	[openWindow setPrompt:@"Save To:"];
@@ -203,7 +189,7 @@
 
 - (IBAction)containerChanged:(NSPopUpButton *)sender {
 	
-	currentContainerHuman = _containerPopup.selectedItem.title;
+	currentContainerHuman = sender.selectedItem.title;
 	
 	for (NSDictionary* containerDict in fileTypes) {
 		if ([containerDict[@"human"] isEqualToString:currentContainerHuman]) {
@@ -267,21 +253,6 @@
 
 }
 
-- (IBAction)presetsButtonPressed:(NSButton *)sender {
-	
-	_presetsPanel.isVisible = YES;
-	
-}
-
-- (IBAction)monoButtonPressed:(NSButton *)sender {
-	[self updateDefaults];
-	[self canTranscode];
-	
-}
-
-- (IBAction)presetsTableHappened:(NSTableView *)sender {
-}
-
 
 
 
@@ -316,13 +287,13 @@
 			transcode.arguments = arguments;
 			
 			
-			outputPipe = [[NSPipe alloc] init];
+			NSPipe* outputPipe = [[NSPipe alloc] init];
 			[transcode setStandardOutput:outputPipe];
 			[transcode setStandardError:outputPipe];
 
 			[[outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
 
-			NSNotificationCenter* notificationCenter = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
+			[[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
 
 				NSData* output = [[outputPipe fileHandleForReading] availableData];
 				NSString* outString = [[NSString alloc ] initWithData:output encoding:NSUTF8StringEncoding];
@@ -342,12 +313,10 @@
 			
 			[transcode waitUntilExit];
 			
-			[[NSNotificationCenter defaultCenter] removeObserver:notificationCenter];
-			
 			[transcode setTerminationHandler:^(NSTask* transcode) {
 				[_progressIndicator stopAnimation:nil];
 				if (_encouragementCheckbox.state) {
-//					[self encourage];
+					[self encourage];
 				}
 			}];
 			
@@ -411,13 +380,9 @@
 	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, removeExtension, currentContainerExtension];
 //	outputFile = [NSString stringWithFormat:@"%@/%@.%@", _destinationField.stringValue, removeExtension, currentContainerExtension];
 	
-	NSString* downmixToMono = @"--mix -c 1";
+
 	
-	if (_monoCheckbox.state == 0) {
-		downmixToMono = @"";
-	}
-	
-	NSString* command = [NSString stringWithFormat:@"%@ -f %@ -d %@ %@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, downmixToMono, inputFile, outputFile];
+	NSString* command = [NSString stringWithFormat:@"%@ -f %@ -d %@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, outputFile];
 	
 //	return @[@" -v ", @" -f ", destFormat, @" -d ", destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, @" -o ", outputFile];
 	return @[stringThing, command];
@@ -520,8 +485,6 @@
 		filename = @"name_cody.mp3";
 	} else if ([currentUser rangeOfString:@"Khris"].location != NSNotFound) {
 		filename = @"name_khris.mp3";
-	} else if ([currentUser rangeOfString:@"Chris"].location != NSNotFound) {
-		filename = @"name_khris.mp3";
 	} else if ([currentUser rangeOfString:@"Kurt"].location != NSNotFound) {
 		filename = @"name_kurt.mp3";
 	} else if ([currentUser rangeOfString:@"Sam"].location != NSNotFound) {
@@ -542,8 +505,6 @@
 	
 	if (userStarted) {
 		[defaults setBool:_encouragementCheckbox.state forKey:@"encouragementEnabled"];
-		
-		[defaults setBool:_monoCheckbox.state forKey:@"monoEnabled"];
 		
 		[defaults setObject:_namePopup.selectedItem.title forKey:@"currentUser"];
 		
