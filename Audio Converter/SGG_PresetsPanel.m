@@ -77,23 +77,36 @@
 	[_presetsTabelView reloadData];
 	
 	
-	NSLog(@"plus pressed");
+//	NSLog(@"plus pressed: %@", [self tableView:nil objectValueForTableColumn:nil row:presets.count - 1]);
+	
 }
 
 - (IBAction)minusButtonPressed:(NSButton *)sender {
 
-	NSLog(@"minus Pressed");
-
+	NSInteger row = _presetsTabelView.selectedRow;
+	[_presetsTabelView abortEditing];
+	SGG_Preset* preset = presets[row];
+	if (preset.canDelete == NO) {
+		return;
+	}
+	if (row > -1) {
+		[presets removeObjectAtIndex:row];
+	}
+	
+	[_presetsTabelView reloadData];
 }
 
 -(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	
 	SGG_Preset* preset = presets[row];
 	
-	return [preset valueForKey:@"title"];
+	return preset.title;
 }
 
 -(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+	
+	SGG_Preset* preset = presets[row];
+	preset.title = object;
 	
 	
 }
