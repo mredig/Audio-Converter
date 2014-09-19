@@ -92,6 +92,9 @@
 	preset.container = controller.containerPopup.titleOfSelectedItem;
 	preset.compression = controller.compressionPopup.titleOfSelectedItem;
 	preset.strategy = controller.compressionStrategy.titleOfSelectedItem;
+	if (!preset.strategy) {
+		preset.strategy = @"CBR";
+	}
 	preset.bitrate = [controller.bitRateTextField integerValue];
 	preset.mono = (bool)controller.monoCheckbox.state;
 	

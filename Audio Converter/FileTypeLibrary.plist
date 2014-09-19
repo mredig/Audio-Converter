@@ -37,7 +37,9 @@
 			<key>compression</key>
 			<string>Apple Lossless</string>
 			<key>bitrate</key>
-			<integer>192000</integer>
+			<integer>500000</integer>
+			<key>strategy</key>
+			<string>CBR</string>
 			<key>mono</key>
 			<false/>
 		</dict>

@@ -689,8 +689,10 @@
         <window title="Audio Converter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="522" height="522"/>
+            <rect key="contentRect" x="277" y="230" width="522" height="522"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <value key="minSize" type="size" width="522" height="522"/>
+            <value key="maxSize" type="size" width="522" height="522"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="522" height="522"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -929,8 +931,10 @@
         <window title="Presets" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="7zh-k3-wTP" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="1636" y="232" width="187" height="283"/>
+            <rect key="contentRect" x="1529" y="276" width="187" height="283"/>
             <rect key="screenRect" x="1440" y="120" width="1920" height="1058"/>
+            <value key="minSize" type="size" width="187" height="283"/>
+            <value key="maxSize" type="size" width="187" height="283"/>
             <view key="contentView" id="AEI-Vq-0nx">
                 <rect key="frame" x="0.0" y="0.0" width="187" height="283"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -949,7 +953,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="presetsColumn" width="141.921875" minWidth="40" maxWidth="1000" id="T62-O9-zDn">
+                                        <tableColumn identifier="presetsColumn" width="142.140625" minWidth="40" maxWidth="1000" id="T62-O9-zDn">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Presets">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
