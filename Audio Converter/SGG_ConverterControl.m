@@ -62,11 +62,8 @@
 											   ]];
 	
 	
-	[self setupPresetsWindow];
-	
 	[self restoreUserSettings];
 	userStarted = YES;
-	
 }
 
 -(void)restoreUserSettings {
@@ -124,13 +121,6 @@
 	}
 	
 	[self compressionChanged:_compressionPopup];
-	
-	
-}
-
--(void)setupPresetsWindow {
-	
-	
 	
 	
 }
@@ -193,7 +183,7 @@
 
 - (IBAction)containerChanged:(NSPopUpButton *)sender {
 	
-	currentContainerHuman = _containerPopup.selectedItem.title;
+	currentContainerHuman = sender.selectedItem.title;
 	
 	for (NSDictionary* containerDict in fileTypes) {
 		if ([containerDict[@"human"] isEqualToString:currentContainerHuman]) {
@@ -269,10 +259,6 @@
 	
 }
 
-- (IBAction)presetsTableHappened:(NSTableView *)sender {
-}
-
-
 
 
 
@@ -337,7 +323,7 @@
 			[transcode setTerminationHandler:^(NSTask* transcode) {
 				[_progressIndicator stopAnimation:nil];
 				if (_encouragementCheckbox.state) {
-//					[self encourage];
+					[self encourage];
 				}
 			}];
 			
