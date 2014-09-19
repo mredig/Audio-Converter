@@ -24,6 +24,8 @@
 	
 	bool userStarted;
 	bool isRunning;
+	
+	NSPipe* outputPipe;
 }
 
 @end
@@ -314,13 +316,13 @@
 			transcode.arguments = arguments;
 			
 			
-			NSPipe* outputPipe = [[NSPipe alloc] init];
+			outputPipe = [[NSPipe alloc] init];
 			[transcode setStandardOutput:outputPipe];
 			[transcode setStandardError:outputPipe];
 
 			[[outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
 
-			[[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
+			NSNotificationCenter* notificationCenter = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
 
 				NSData* output = [[outputPipe fileHandleForReading] availableData];
 				NSString* outString = [[NSString alloc ] initWithData:output encoding:NSUTF8StringEncoding];
@@ -340,10 +342,12 @@
 			
 			[transcode waitUntilExit];
 			
+			[[NSNotificationCenter defaultCenter] removeObserver:notificationCenter];
+			
 			[transcode setTerminationHandler:^(NSTask* transcode) {
 				[_progressIndicator stopAnimation:nil];
 				if (_encouragementCheckbox.state) {
-					[self encourage];
+//					[self encourage];
 				}
 			}];
 			
