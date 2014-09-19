@@ -172,7 +172,7 @@
 
 }
 
-- (IBAction)saveTo:(NSButton *)sender {
+- (IBAction)saveTo:(id)sender {
 		
 	NSOpenPanel* openWindow = [NSOpenPanel openPanel];
 	[openWindow setPrompt:@"Save To:"];

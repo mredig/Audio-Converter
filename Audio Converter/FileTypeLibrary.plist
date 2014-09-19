@@ -30,6 +30,43 @@
 			<key>mono</key>
 			<false/>
 		</dict>
+		<key>Apple Lossless</key>
+		<dict>
+			<key>container</key>
+			<string>m4a</string>
+			<key>compression</key>
+			<string>Apple Lossless</string>
+			<key>bitrate</key>
+			<integer>192000</integer>
+			<key>mono</key>
+			<false/>
+		</dict>
+		<key>iTunes Plus</key>
+		<dict>
+			<key>container</key>
+			<string>m4a</string>
+			<key>compression</key>
+			<string>AAC</string>
+			<key>strategy</key>
+			<string>CBR</string>
+			<key>bitrate</key>
+			<integer>256000</integer>
+			<key>mono</key>
+			<false/>
+		</dict>
+		<key>Better Than iTP</key>
+		<dict>
+			<key>container</key>
+			<string>m4a</string>
+			<key>compression</key>
+			<string>AAC</string>
+			<key>strategy</key>
+			<string>VBR</string>
+			<key>bitrate</key>
+			<real>256000</real>
+			<key>mono</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>FileTypes</key>
 	<array>
