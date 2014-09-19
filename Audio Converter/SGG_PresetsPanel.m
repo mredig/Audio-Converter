@@ -53,6 +53,7 @@
 		preset.compression = presetDict[@"compression"];
 		preset.strategy = presetDict[@"strategy"];
 		preset.bitrate = [presetDict[@"bitrate"] integerValue];
+		preset.mono = [presetDict[@"mono"] boolValue];
 		preset.canDelete = NO;
 		[presets addObject:preset];
 		
@@ -68,6 +69,7 @@
 		preset.compression = dictionaryPreset[@"compression"];
 		preset.strategy = dictionaryPreset[@"strategy"];
 		preset.bitrate = [dictionaryPreset[@"bitrate"] integerValue];
+		preset.mono = [dictionaryPreset[@"mono"] boolValue];
 		preset.canDelete = YES;
 		
 		[presets addObject:preset];
@@ -87,6 +89,7 @@
 	preset.compression = _compressionPopup.titleOfSelectedItem;
 	preset.strategy = _compressionStrategyPopup.titleOfSelectedItem;
 	preset.bitrate = [_bitrateTextField integerValue];
+	preset.mono = (bool)_monoCheckbox.state;
 	
 	[presets addObject:preset];
 	
@@ -134,7 +137,8 @@
 		[_bitrateTextField setStringValue:[NSString stringWithFormat:@"%i", (int)preset.bitrate]];
 		[controller bitRateChanged:_bitrateTextField];
 		
-		
+		[_monoCheckbox setState:preset.mono];
+		[controller monoButtonPressed:_monoCheckbox];
 	}
 
 }
@@ -167,8 +171,8 @@
 	for (NSInteger i = defaultPresets; i < presets.count; i++) {
 		SGG_Preset* preset = presets[i];
 		
-		NSArray* presetArray = @[preset.title, preset.container, preset.compression, preset.strategy, [NSNumber numberWithInteger:preset.bitrate]];
-		NSArray* presetKeys = @[@"title", @"container", @"compression", @"strategy", @"bitrate"];
+		NSArray* presetArray = @[preset.title, preset.container, preset.compression, preset.strategy, [NSNumber numberWithInteger:preset.bitrate], [NSNumber numberWithBool:preset.mono]];
+		NSArray* presetKeys = @[@"title", @"container", @"compression", @"strategy", @"bitrate", @"mono"];
 		
 		NSDictionary* presetDictionary = [NSDictionary dictionaryWithObjects:presetArray forKeys:presetKeys];
 		

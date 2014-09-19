@@ -73,6 +73,7 @@
 	
 	[self restoreUserSettings];
 	userStarted = YES;
+	
 }
 
 -(void)restoreUserSettings {
@@ -80,6 +81,8 @@
 	[_namePopup selectItemWithTitle:[defaults objectForKey:@"currentUser"]];
 	
 	[_encouragementCheckbox setState:[defaults boolForKey:@"encouragementEnabled"]];
+	
+	[_monoCheckbox setState:[defaults boolForKey:@"monoEnabled"]];
 	
 	[_containerPopup selectItemWithTitle:[defaults objectForKey:@"currentContainer"]];
 //	[self populateCompressionPopup];
@@ -268,6 +271,12 @@
 	
 }
 
+- (IBAction)monoButtonPressed:(NSButton *)sender {
+	[self updateDefaults];
+	[self canTranscode];
+	
+}
+
 - (IBAction)presetsTableHappened:(NSTableView *)sender {
 }
 
@@ -398,9 +407,13 @@
 	outputFile = [NSString stringWithFormat:@"'%@/%@.%@'", _destinationField.stringValue, removeExtension, currentContainerExtension];
 //	outputFile = [NSString stringWithFormat:@"%@/%@.%@", _destinationField.stringValue, removeExtension, currentContainerExtension];
 	
-
+	NSString* downmixToMono = @"--mix -c 1";
 	
-	NSString* command = [NSString stringWithFormat:@"%@ -f %@ -d %@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, outputFile];
+	if (_monoCheckbox.state == 0) {
+		downmixToMono = @"";
+	}
+	
+	NSString* command = [NSString stringWithFormat:@"%@ -f %@ -d %@ %@ %@ %@ %@ %@ %@ -o %@", executable, destFormat, destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, downmixToMono, inputFile, outputFile];
 	
 //	return @[@" -v ", @" -f ", destFormat, @" -d ", destCodec, stratFlag, destStrat, bitrateFlag, destBitrate, inputFile, @" -o ", outputFile];
 	return @[stringThing, command];
@@ -525,6 +538,8 @@
 	
 	if (userStarted) {
 		[defaults setBool:_encouragementCheckbox.state forKey:@"encouragementEnabled"];
+		
+		[defaults setBool:_monoCheckbox.state forKey:@"monoEnabled"];
 		
 		[defaults setObject:_namePopup.selectedItem.title forKey:@"currentUser"];
 		

@@ -20,6 +20,7 @@
 		_strategy = @"VBR";
 		_bitrate = 192000;
 		_canDelete = NO;
+		_mono = NO;
     }
     return self;
 }

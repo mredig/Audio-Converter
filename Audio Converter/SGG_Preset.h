@@ -15,6 +15,7 @@
 @property (nonatomic) NSString* compression;
 @property (nonatomic) NSString* strategy;
 @property (nonatomic) NSInteger bitrate;
+@property (nonatomic) bool mono;
 @property (nonatomic) BOOL canDelete;
 
 

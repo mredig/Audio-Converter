@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSPopUpButton *compressionStrategyPopup;
 @property (weak) IBOutlet NSTextField *bitrateTextField;
 @property (weak) IBOutlet id converterController;
+@property (weak) IBOutlet NSButton *monoCheckbox;
 
 
 

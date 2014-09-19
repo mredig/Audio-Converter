@@ -4,6 +4,19 @@
 <dict>
 	<key>Presets</key>
 	<dict>
+		<key>iOS Audio Mono</key>
+		<dict>
+			<key>container</key>
+			<string>CAF</string>
+			<key>compression</key>
+			<string>AAC</string>
+			<key>strategy</key>
+			<string>VBR</string>
+			<key>bitrate</key>
+			<integer>192000</integer>
+			<key>mono</key>
+			<true/>
+		</dict>
 		<key>iOS Audio</key>
 		<dict>
 			<key>container</key>
@@ -14,6 +27,8 @@
 			<string>VBR</string>
 			<key>bitrate</key>
 			<integer>192000</integer>
+			<key>mono</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>FileTypes</key>
