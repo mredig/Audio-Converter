@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SGG_PresetsPanel.h"
 
 @interface SGG_ConverterControl : NSObject <NSSoundDelegate>
 
@@ -21,6 +22,7 @@
 @property (weak) IBOutlet NSButton *encouragementCheckbox;
 @property (weak) IBOutlet NSButton *encodeButton;
 @property (unsafe_unretained) IBOutlet NSTextView *outputTextArea;
+@property (strong) IBOutlet NSPanel *presetsPanel;
 
 
 - (IBAction)openFileNamed:(id)sender;
@@ -31,6 +33,7 @@
 - (IBAction)compressionStrategyChanged:(NSPopUpButton *)sender;
 - (IBAction)bitRateChanged:(NSTextField *)sender;
 - (IBAction)encouragementChanged:(NSButton *)sender;
+- (IBAction)presetsButtonPressed:(NSButton *)sender;
 
 - (IBAction)encodeButtonPressed:(NSButton *)sender;
 

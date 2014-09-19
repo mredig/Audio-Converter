@@ -69,6 +69,8 @@
 											   ]];
 	
 	
+	[self setupPresetsWindow];
+	
 	[self restoreUserSettings];
 	userStarted = YES;
 }
@@ -127,6 +129,13 @@
 	}
 	
 	[self compressionChanged:_compressionPopup];
+	
+	
+}
+
+-(void)setupPresetsWindow {
+	
+	
 	
 	
 }
@@ -251,6 +260,15 @@
 	[self updateDefaults];
 	[self canTranscode];
 
+}
+
+- (IBAction)presetsButtonPressed:(NSButton *)sender {
+	
+	_presetsPanel.isVisible = YES;
+	
+}
+
+- (IBAction)presetsTableHappened:(NSTableView *)sender {
 }
 
 
@@ -484,6 +502,8 @@
 	} else if ([currentUser rangeOfString:@"Cody"].location != NSNotFound) {
 		filename = @"name_cody.mp3";
 	} else if ([currentUser rangeOfString:@"Khris"].location != NSNotFound) {
+		filename = @"name_khris.mp3";
+	} else if ([currentUser rangeOfString:@"Chris"].location != NSNotFound) {
 		filename = @"name_khris.mp3";
 	} else if ([currentUser rangeOfString:@"Kurt"].location != NSNotFound) {
 		filename = @"name_kurt.mp3";
